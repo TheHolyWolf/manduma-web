@@ -17,10 +17,15 @@ export default function Home() {
         <p className="mt-4 text-xl sm:text-2xl opacity-90">
           Partner with us to transform your business digitally.
         </p>
-        {/* Placeholder for the main CTA button */}
-        <button className="mt-8 px-8 py-3 border border-transparent text-lg font-medium rounded-full text-blue-800 bg-white hover:bg-gray-200">
+        {/* Actual Booking Link (Calendly Integration) */}
+        <a 
+          href="https://calendly.com/boulazragyoussef/30min"
+          target="_blank" // UX Best Practice: Opens the link in a new tab
+          rel="noopener noreferrer" // Security Best Practice: Prevents potential tabnapping attacks
+          className="inline-block mt-8 px-8 py-3 border border-transparent text-lg font-medium rounded-full text-blue-800 bg-white hover:bg-gray-200"
+        >
           Book a Consultation Today
-        </button>
+        </a>
       </section>
 
       {/* 3. SERVICES SECTION (The Details) */}
