@@ -1,12 +1,58 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-white">
-      <h1 className="text-4xl font-bold text-blue-900">
-        Welcome to Manduma
-      </h1>
-      <p className="text-gray-600 mt-4 text-xl">
-        Innovating the future.
-      </p>
-    </main>
+    <div className="min-h-screen bg-gray-50">
+      {/* 1. HEADER (Navigation) */}
+      <header className="py-4 shadow-md bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-blue-900">Manduma</h1>
+          {/* We'll add real navigation links here later */}
+        </div>
+      </header>
+
+      {/* 2. HERO SECTION (The Hook) */}
+      <section className="text-center py-20 bg-blue-800 text-white">
+        <h2 className="text-5xl font-extrabold tracking-tight sm:text-6xl">
+          Innovating the Future of [Your Industry]
+        </h2>
+        <p className="mt-4 text-xl sm:text-2xl opacity-90">
+          Partner with us to transform your business digitally.
+        </p>
+        {/* Placeholder for the main CTA button */}
+        <button className="mt-8 px-8 py-3 border border-transparent text-lg font-medium rounded-full text-blue-800 bg-white hover:bg-gray-200">
+          Book a Consultation Today
+        </button>
+      </section>
+
+      {/* 3. SERVICES SECTION (The Details) */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 className="text-3xl font-extrabold text-gray-900 text-center mb-12">
+            Our Core Services
+          </h3>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {/* Placeholder for 3 Service Cards */}
+            <div className="bg-white p-6 rounded-lg shadow-xl border-t-4 border-blue-600">
+              <h4 className="text-xl font-semibold mb-2">Digital Strategy</h4>
+              <p className="text-gray-600">Mapping your path to digital success.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-xl border-t-4 border-blue-600">
+              <h4 className="text-xl font-semibold mb-2">Application Development</h4>
+              <p className="text-gray-600">Building stable, secure web applications.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-xl border-t-4 border-blue-600">
+              <h4 className="text-xl font-semibold mb-2">Cloud Integration</h4>
+              <p className="text-gray-600">Seamless integration with modern cloud platforms.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 4. FOOTER */}
+      <footer className="bg-gray-800 text-white py-6 mt-12">
+        <div className="max-w-7xl mx-auto text-center text-sm">
+          &copy; {new Date().getFullYear()} Manduma. All rights reserved.
+        </div>
+      </footer>
+    </div>
   );
 }
