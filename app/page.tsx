@@ -46,6 +46,72 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 4. CONTACT / LEAD FORM SECTION */}
+      <section id="contact" className="py-24 bg-gray-100">
+        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 className="text-3xl font-extrabold text-gray-900 text-center mb-8">
+            Ready to Start? Book a Meeting
+          </h3>
+          <form 
+            // *** CRITICAL STEP: PASTE YOUR FORMSPREE ENDPOINT HERE ***
+            action="https://formspree.io/f/xblvjqln" 
+            method="POST"
+            className="space-y-6 bg-white p-8 rounded-lg shadow-2xl"
+          >
+            <div>
+              <label htmlFor="full-name" className="block text-sm font-medium text-gray-700">Full Name</label>
+              <input 
+                type="text" 
+                name="name" 
+                id="full-name" 
+                required 
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" 
+                placeholder="John Doe"
+              />
+            </div>
+            <div>
+              <label htmlFor="company" className="block text-sm font-medium text-gray-700">Company Name</label>
+              <input 
+                type="text" 
+                name="Company" 
+                id="company" 
+                required 
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" 
+                placeholder="Manduma Inc."
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+              <input 
+                type="email" 
+                name="_replyto" // Formspree uses this field to reply directly
+                id="email" 
+                required 
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border" 
+                placeholder="client@business.com"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700">Describe Your Project Needs</label>
+              <textarea 
+                name="message" 
+                id="message" 
+                rows={4}
+                required 
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border"
+                placeholder="We need assistance with..."
+              ></textarea>
+            </div>
+            <button 
+              type="submit" 
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Submit & Request Meeting
+            </button>
+          </form>
+        </div>
+      </section>
       
       {/* 4. FOOTER */}
       <footer className="bg-gray-800 text-white py-6 mt-12">
