@@ -42,10 +42,7 @@ export default function PrivacyPolicyPage() {
           This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
         </p>
         <p className="text-slate-700 mb-4 leading-relaxed">
-          We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the{' '}
-          <a href="https://www.freeprivacypolicy.com/free-privacy-policy-generator/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-            Free Privacy Policy Generator
-          </a>.
+          We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.
         </p>
 
         <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-4">Interpretation and Definitions</h2>
