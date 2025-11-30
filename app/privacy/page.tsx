@@ -123,10 +123,7 @@ export default function PrivacyPolicyPage() {
           </li>
         </ul>
         <p className="text-slate-700 mb-4 leading-relaxed">
-          Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser. Learn more about cookies on the{' '}
-          <a href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-            Free Privacy Policy website
-          </a>{' '}
+          Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser.
           article.
         </p>
         <p className="text-slate-700 mb-2 leading-relaxed">
