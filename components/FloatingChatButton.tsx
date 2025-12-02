@@ -62,7 +62,7 @@ interface Message {
 }
 
 // ⚠️ CONFIRMED: Using the new n8n Webhook URL
-const N8N_WEBHOOK_URL = "https://n8n.manduma.com/webhook-test/13684992-d01b-49fd-8817-148c1a8c7258"; 
+const N8N_WEBHOOK_URL = "https://n8n.manduma.com/webhook/13684992-d01b-49fd-8817-148c1a8c7258"; 
 
 export default function FloatingChatButton() {
   const [isOpen, setIsOpen] = useState(false);
