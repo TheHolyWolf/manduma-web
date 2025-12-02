@@ -1,49 +1,59 @@
 // app/page.tsx
+'use client'; // FIX: Mark the root page as a client component to allow dynamic imports with ssr: false
+
+import dynamic from 'next/dynamic';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import RevealOnScroll from '../components/RevealOnScroll';
 
 // **********************************************
-// COMPONENTS BUILT IN PHASE 1: THE MARKETING SITE
+// DYNAMIC IMPORTS: Lazy-load components to improve performance
 // **********************************************
-import HeroSection from '../components/HeroSection';
-import IntegrationsSection from '../components/IntegrationsSection';
-import ProblemSection from '../components/ProblemSection';
-import HowItWorksSection from '../components/HowItWorksSection'; // The Solution/Process
-import AuthoritySection from '../components/AuthoritySection';
-import FinalCTA from '../components/FinalCTA'; // The final, high-contrast CTA
+import HeroSection from '../components/HeroSection'; 
 
-// NOTE ON IMPORTS:
-// 1. I have replaced 'SolutionCards' with 'HowItWorksSection' (the name we used for the 3-step process).
-// 2. I have replaced 'FinalCTA' with 'CTAFooter' (our final component name).
-// 3. I removed the duplicated CTA_LINK constant, as it is now securely defined inside the CTAFooter component.
-
+// Use dynamic() wrapper for components that use client-side logic (RevealOnScroll)
+const DynamicIntegrationsSection = dynamic(() => import('../components/IntegrationsSection'), { ssr: false });
+const DynamicProblemSection = dynamic(() => import('../components/ProblemSection'), { ssr: false });
+const DynamicHowItWorksSection = dynamic(() => import('../components/HowItWorksSection'), { ssr: false });
+const DynamicAuthoritySection = dynamic(() => import('../components/AuthoritySection'), { ssr: false });
+const DynamicFinalCTA = dynamic(() => import('../components/FinalCTA'), { ssr: false });
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 antialiased">
       
-      {/* 1. NAVIGATION & LOGO (Assuming this exists) */}
+      {/* 1. NAVIGATION & LOGO */}
       <Header />
 
       <main>
         
-        {/* 2. HERO SECTION (The Hook & Primary Offer) */}
+        {/* 2. HERO SECTION (Has its own framer-motion stagger animation) */}
         <HeroSection />
 
-        {/* 3. INTEGRATIONS (Immediate Trust / Compatibility) */}
-        <IntegrationsSection />
+        {/* 3. INTEGRATIONS - LAZY LOADED & ANIMATED (Using Parallax defaults) */}
+        <RevealOnScroll>
+            <DynamicIntegrationsSection />
+        </RevealOnScroll>
 
-        {/* 4. THE PROBLEM (Agitation - The Growth Paradox) */}
-        <ProblemSection />
+        {/* 4. THE PROBLEM - LAZY LOADED & ANIMATED (Using Parallax defaults) */}
+        <RevealOnScroll>
+            <DynamicProblemSection />
+        </RevealOnScroll>
 
-        {/* 5. HOW IT WORKS (The Solution/Process - Secure 48-Hour Scan) */}
-        <HowItWorksSection /> 
+        {/* 5. HOW IT WORKS - LAZY LOADED & ANIMATED (Using Parallax defaults) */}
+        <RevealOnScroll>
+            <DynamicHowItWorksSection /> 
+        </RevealOnScroll>
         
-        {/* 6. AUTHORITY (Expertise Codified into an OS) */}
-        <AuthoritySection />
+        {/* 6. AUTHORITY - LAZY LOADED & ANIMATED (Using Parallax defaults) */}
+        <RevealOnScroll>
+            <DynamicAuthoritySection />
+        </RevealOnScroll>
 
-        {/* 7. FINAL CTA (The Conversion Funnel Closer - Book the Scan) */}
-        <FinalCTA />
+        {/* 7. FINAL CTA - LAZY LOADED & ANIMATED (Using Parallax defaults) */}
+        <RevealOnScroll>
+            <DynamicFinalCTA />
+        </RevealOnScroll>
 
       </main>
 

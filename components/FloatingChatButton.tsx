@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 // --- ICONS ---
+// ... (Icon definitions remain unchanged)
 
 // 1. Manduma Logo Icon (Used in the button and header)
 const MandumaLogoIcon = ({ size = 24 }: { size?: number }) => (
@@ -60,8 +61,8 @@ interface Message {
     text: string;
 }
 
-// Your live n8n webhook URL
-const N8N_WEBHOOK_URL = "https://n8n.manduma.com/webhook/e2d1db70-acfc-40fc-b07d-8697eb866d72"; 
+// ⚠️ CONFIRMED: Using the new n8n Webhook URL
+const N8N_WEBHOOK_URL = "https://n8n.manduma.com/webhook-test/13684992-d01b-49fd-8817-148c1a8c7258"; 
 
 export default function FloatingChatButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -99,15 +100,15 @@ export default function FloatingChatButton() {
     try {
         const response = await fetch(N8N_WEBHOOK_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: userMessage, source: 'Manduma Chat' }),
+            headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify({ message: userMessage, source: 'Manduma Chat Frontend' }), 
         });
 
         if (response.ok) {
             const data = await response.json();
             
-            // Expecting 'answer' field from n8n
-            const agentAnswer = data.answer || "I received your message, but I'm not sure how to respond just yet.";
+            // ⚠️ IMPROVEMENT: Clearer message if 'answer' is missing from n8n response
+            const agentAnswer = data.answer || "Successfully triggered workflow, but the AI response was empty. Please verify your n8n Response node configuration.";
 
             // 3. Replace "..." with actual answer
             setMessages(prev => {
@@ -116,17 +117,21 @@ export default function FloatingChatButton() {
             });
 
         } else {
-            // Handle HTTP errors
+            // Handle HTTP errors (e.g., 404, 500)
             setMessages(prev => {
                 const newMessages = prev.slice(0, -1);
-                return [...newMessages, { sender: 'agent', text: `Connection Error (Status: ${response.status}). Please try again later.` }];
+                return [...newMessages, { sender: 'agent', text: `Error: The workflow returned an error (Status: ${response.status}). Please check the n8n logs.` }];
             });
         }
     } catch (error) {
-        // Handle Network errors (CORS/Offline)
+        // Handle Network/CORS errors
+        console.error("Fetch error:", error);
         setMessages(prev => {
             const newMessages = prev.slice(0, -1);
-            return [...newMessages, { sender: 'agent', text: 'Network Error: I cannot reach the server. Please check your connection or CORS settings.' }];
+            return [...newMessages, { 
+                sender: 'agent', 
+                text: 'Connection failed. This is usually due to server-side CORS restrictions or an invalid webhook URL.' 
+            }];
         });
     } finally {
         setIsSending(false);
@@ -134,7 +139,7 @@ export default function FloatingChatButton() {
   };
 
   // --- UI COMPONENTS ---
-
+  // ... (MessageBubble and return structure remain unchanged)
   const MessageBubble = ({ sender, text }: Message) => (
     <div className={`flex ${sender === 'user' ? 'justify-end' : 'justify-start'} mb-4`}>
         {/* Avatar for Agent */}
@@ -150,6 +155,7 @@ export default function FloatingChatButton() {
                 : 'bg-white border border-slate-100 text-slate-700 rounded-tl-none'
         }`}>
             {text === '...' ? (
+                // Thinking Indicator (Dot Animation)
                 <span className="flex gap-1">
                     <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
                     <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-75"></span>
